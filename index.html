@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Website</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="coding.png">
+
+    <link rel="stylesheet" href="https://unpkg.com/boxicons@latest/css/boxicons.min.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;1,400;1,900&display=swap" rel="stylesheet">
+
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            font-family: 'Poppins', sans-serif;
+            box-sizing: border-box;
+            text-decoration: var(--h2-font);
+            list-style-type: circle;
+            scroll-behavior: smooth;
+        }
+        
+         :root {
+            --bg-color: #2a2a2a;
+            --second-bg-color: #202020;
+            --text-color: #fff;
+            --second-color: #ccc;
+            --main-color: #FF0000;
+            --big-font: 5rem;
+            --h2-font: 3rem;
+            --p-font: 1.1rem;
+        }
+        
+        body {
+            background: var(--bg-color);
+            color: var(--text-color);
+        }
+        
+        header {
+            position: fixed;
+            width: 100%;
+            top: 0;
+            right: 0;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: transparent;
+            padding: 22px 15%;
+            border-bottom: 1px solid transparent;
+            transition: all .45s ease;
+        }
+        
+        .logo {
+            color: var(--text-color);
+            font-size: 35px;
+            font-weight: 700;
+            letter-spacing: 1px;
+        }
+        
+        span {
+            color: var(--main-color);
+        }
+        
+        .navlist {
+            display: flex;
+        }
+        
+        .navlist a {
+            font-size: 17px;
+            margin: 0 25px;
+            font-weight: 500;
+            color: var(--second-color);
+            transition: all .45s ease;
+        }
+        
+        .navlist a:hover {
+            color: var(--main-color);
+        }
+        
+        .navlist a.active {
+            color: var(--main-color);
+        }
+        
+        #menu-icon {
+            font-size: 35px;
+            color: var(--text-color);
+            z-index: 10001;
+            cursor: pointer;
+            margin-left: 25px;
+            display: none;
+        }
+        
+        section {
+            padding: 160px 15% 120px;
+        }
+        
+        .home {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            background-position: center;
+            background-size: cover;
+            background-image: url(/images/Untitled.png);
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+        }
+        
+        .slide {
+            margin-bottom: 22px;
+        }
+        
+        .one {
+            display: inline-block;
+            margin-right: 15px;
+            height: 32px;
+            padding: 0 15px;
+            line-height: 32px;
+            font-size: 22px;
+            border-radius: 5px;
+            font-weight: 500;
+            background: var(--main-color);
+            color: var(--text-color);
+        }
+        
+        .two {
+            display: inline-block;
+            font-weight: 500;
+            font-size: 22px;
+            color: var(--second-color);
+        }
+        
+        .home-text h1 {
+            font-size: var(--big-font);
+            font-weight: 700;
+            color: var(--text-color);
+            margin: 0 0 8px;
+            line-height: 1.1;
+        }
+        
+        .home-text h3 {
+            line-height: 1.1;
+            font-weight: 700;
+            color: var(--text-color);
+            font-size: 3rem;
+            margin: 0 0 35px;
+        }
+        
+        .home-text p {
+            color: var(--second-color);
+            font-size: var(--p-font);
+            line-height: 1.8;
+            margin-bottom: 40px;
+        }
+        
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            background: var(--main-color);
+            border-radius: 5px;
+            color: var(--text-color);
+            font-size: 1rem;
+            letter-spacing: 1px;
+            font-weight: 600;
+            transition: all .45s ease;
+        }
+        
+        .btn:hover {
+            transform: scale(0.9);
+        }
+        
+        header.sticky {
+            background: var(--bg-color);
+            border-bottom: 1px solid #ffffff1a;
+            padding: 12px 15%;
+        }
+        
+        .about {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            align-items: center;
+            gap: 1.5rem;
+            grid-template-areas: "about-text about-img";
+            /* Update the grid area names */
+        }
+        
+        .about .about-img {
+            grid-area: about-img;
+            /* Update the grid area */
+            display: flex;
+            justify-content: flex-end;
+        }
+        
+        .about-text {
+            grid-area: about-text;
+        }
+        
+        .about-text h2 {
+            font-size: var(--h2-font);
+            line-height: 1;
+        }
+        
+        .about-text h4 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin: 15px 0 30px;
+            line-height: 1.7;
+        }
+        
+        .about-text p {
+            margin-bottom: 4rem;
+            color: var(--second-color);
+            line-height: 1.8;
+            font-size: var(--p-font);
+        }
+        
+        .services {
+            background: var(--second-bg-color);
+        }
+        
+        .main-text {
+            text-align: center;
+        }
+        
+        .main-text p {
+            color: var(--second-color);
+            font-size: 15px;
+            margin-bottom: 15px;
+        }
+        
+        .main-text h2 {
+            font-size: var(--h2-font);
+            line-height: 1;
+        }
+        
+        .services-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            align-items: center;
+            justify-items: center;
+            gap: 2.5rem;
+            margin-top: 5rem;
+            text-align: center;
+        }
+        
+        .box {
+            background: var(--bg-color);
+            padding: 35px 45px;
+            border-radius: 8px;
+            transition: all .45s ease;
+        }
+        
+        .s-icons i {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+        
+        .box h3 {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 15px;
+        }
+        
+        .box p {
+            color: var(--second-color);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+        
+        .read {
+            display: inline-block;
+            padding: 8px 18px;
+            background: #333333;
+            color: var(--second-color);
+            font-size: 14px;
+            font-weight: 500;
+            transition: all .45s ease;
+            border-radius: 8px;
+        }
+        
+        .read:hover {
+            letter-spacing: 1px;
+            color: var(--text-color);
+            background: #FF0000;
+        }
+        
+        .box:hover {
+            transform: translateY(-8px);
+            cursor: pointer;
+        }
+        
+        .portfolio-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, auto));
+            align-items: center;
+            gap: 2.5rem;
+            margin-top: 5rem;
+        }
+        
+        .row {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+        
+        .row img {
+            width: 100%;
+            border-radius: 8px;
+            display: block;
+            transition: transform 0.5s;
+        }
+        
+        .layer {
+            width: 100%;
+            height: 0;
+            background: linear-gradient(rgba(0, 0, 0, 0.1), #3fbede);
+            position: absolute;
+            border-radius: 8px;
+            left: 0;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            transition: height 0.5s;
+            flex-direction: column;
+            padding: 0 40px;
+            bottom: 0;
+        }
+        
+        .layer h5 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .layer p {
+            color: var(--second-color);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+        
+        .layer i {
+            color: var(--main-color);
+            margin-top: 28px;
+            font-size: 20px;
+            background: var(--text-color);
+            width: 60px;
+            height: 60px;
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            border-radius: 50%;
+        }
+        
+        .row:hover {
+            transform: scale(1.1);
+        }
+        
+        .row:hover .layer {
+            height: 100%;
+        }
+        
+        .contact {
+            background: var(--second-bg-color);
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            align-items: center;
+            gap: 2.5rem;
+        }
+        
+        .list {
+            margin: 12px;
+        }
+        
+        .list li a {
+            display: block;
+            color: var(--second-color);
+            font-size: 14px;
+            transition: all .45s ease;
+        }
+        
+        .list li a:hover {
+            color: var(--text-color);
+            transform: translateX(5px);
+        }
+        
+        .contact-icons i {
+            height: 45px;
+            width: 45px;
+            background: var(--main-color);
+            align-items: center;
+            color: var(--text-color);
+            font-size: 22px;
+            justify-content: center;
+            display: inline-flex;
+            border-radius: 8px;
+            margin-right: 15px;
+            transition: all .45s ease;
+        }
+        
+        .contact-icons i:hover {
+            background: var(--text-color);
+            color: var(--main-color);
+        }
+        
+        .contact-form form {
+            position: relative;
+        }
+        
+        .contact-form form input,
+        form textarea {
+            background: var(--bg-color);
+            color: var(--text-color);
+            padding: 14px;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            width: 100%;
+        }
+        
+        .contact-form textarea {
+            resize: none;
+            height: 240px;
+        }
+        
+        .contact-form .submit {
+            display: inline-block;
+            font-size: 16px;
+            background: var(--main-color);
+            color: var(--text-color);
+            width: 160px;
+            transition: all .45s ease;
+        }
+        
+        .contact-form .submit:hover {
+            transform: scale(1.1);
+            cursor: pointer;
+        }
+        
+        .end {
+            padding: 20px 15%;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-around;
+            gap: .1%;
+            background: var(--bg-color);
+        }
+        
+        .last-text {
+            width: 100%;
+            text-align: center;
+        }
+        
+        .last-text p {
+            color: var(--second-color);
+            font-size: 14px;
+        }
+        
+        .centered {
+            display: inline-block;
+            text-align: center;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto;
+        }
+        
+        .top i {
+            padding: 10px;
+            color: var(--text-color);
+            border-radius: 8px;
+            font-size: 15px;
+            background: var(--main-color);
+        }
+        
+        @media (max-width: 1480px) {
+            header {
+                padding: 12px 2.5%;
+                transition: .1s;
+            }
+            header.sticky {
+                padding: 10px 2.5%;
+                transition: .1s;
+            }
+            section {
+                padding: 110px 3% 60px;
+            }
+            .end {
+                padding: 15px 3%;
+            }
+        }
+        
+        @media (max-width:1100px) {
+             :root {
+                --big-font: 4rem;
+                --h2-font: 2.5rem;
+                --p-font: 1rem;
+                transition: .1s;
+            }
+            .home-text h3 {
+                font-size: 2.5rem;
+            }
+            .home {
+                height: 87vh;
+            }
+        }
+        
+        @media(max-width: 920px) {
+            .about {
+                grid-template-columns: 1fr;
+            }
+            .about-image {
+                text-align: center;
+                order: 2;
+            }
+            .about-img img {
+                width: 100%;
+                height: auto;
+                max-width: 100%;
+            }
+            .contact {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 820px) {
+            #menu-icon {
+                display: block;
+            }
+            .navlist {
+                position: absolute;
+                top: -1000px;
+                left: 0;
+                right: 0;
+                display: flex;
+                flex-direction: column;
+                background: var(--bg-color);
+                text-align: left;
+                transition: all .45s ease;
+            }
+            .navlist a {
+                display: block;
+                margin: 17px;
+                font-size: 20px;
+                transition: all .45s ease;
+                color: var(--text-color);
+            }
+            .navlist a:hover {
+                color: var(--main-color);
+            }
+            .navlist a.active {
+                color: var(--text-color);
+            }
+            .navlist.open {
+                top: 100%;
+            }
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <a href="#" class="logo"><span>A</span>bhi<span>s</span>hek</a>
+
+        <ul class="navlist">
+            <li><a href="#home" class="active">Home</a></li>
+            <li><a href="#about">About Me</a></li>
+            <li><a href="#services">Certifications</a></li>
+            <li><a href="#portfolio">Projects</a></li>
+            <li><a href="#contact">Contact Us</a></li>
+        </ul>
+
+    </header>
+
+    <section class="home" id="home">
+        <div class="home-text">
+            <div class="slide">
+                <span class="one">Hey</span>
+                <span class="two">I'm</span>
+            </div>
+            <h1>Abhishek Singh</h1>
+            <h3>Cloud Computing <span> & </span> Virtualization </h3>
+            <p>Welcome to My Portfolio Good to see you here...</p>
+            <div class="button">
+                <a href="https://drive.google.com/file/d/1B7OgQvNwdxX-j2xKw6INIENUlf-J609D/view" class="btn">See Resume </a>
+
+            </div>
+
+        </div>
+    </section>
+
+    <section class="about" id="about">
+        <div class="about-img">
+            <img src="Image.jpg" height="50%" width="75%">
+        </div>
+
+        <div class="about-text">
+            <h2>About<span> Me</span></h2>
+            <h4>Sophomore</h4>
+            <p>I'm a Fresher Web Developer and Cloud Computing student. Passionate about creating dynamic websites, I excel in HTML, CSS, and JavaScript. Additionally, I'm studying cloud computing, mastering platforms like AWS, Azure, and GCP. Seeking opportunities
+                to grow, I'm eager for internships or entry-level positions. With my enthusiasm and dedication, I'm poised to make an impact in web development and cloud computing.</p>
+            <a href="https://www.geeksforgeeks.org/user/abhisheksinghlkouniv/" class="btn"> Touch Here </a>
+        </div>
+    </section>
+    <section class="services" id="services">
+        <div class="main-text">
+            <h2><span>My</span> Certifications</h2>
+        </div>
+        <div class="services-content">
+            <div class="box">
+                <div class="s-icons"><i class='bx bxl-aws'></i></div>
+                <h3>AWS Cloud Technical Essentials
+                </h3>
+                <p>I am a passionate and driven individual ready to leverage my skills and knowledge to contribute to the success of your team. With a solid understanding of cloud technology and a proactive approach to learning, I am confident in my ability
+                    to deliver exceptional results in AWS cloud environments.</p>
+                <a href="https://www.coursera.org/account/accomplishments/certificate/GZTPF8L998C3" class="read">See Here</a>
+            </div>
+        </div>
+        <div class="services-content">
+            <div class="box">
+                <div class="s-icons"><i class='bx bxl-aws'></i></div>
+                <h3>AWS Cloud Practitioner Essentials
+                </h3>
+                <p>I am a dynamic AWS Cloud Practitioner ready to elevate your team to new heights. With a passion for innovation and a commitment to excellence, I am confident in my ability to deliver exceptional results in AWS cloud environments.</p>
+                <a href="https://www.coursera.org/account/accomplishments/certificate/VK4XRDGUT6W2" class="read">See Here</a>
+            </div>
+        </div>
+
+        <div class="services-content">
+            <div class="box">
+                <div class="s-icons"><i class='bx bx-cloud'></i></div>
+                <h3>DevOps
+                </h3>
+                <p> I am a dedicated DevOps skills ready to help your team achieve its goals. With a focus on automation, collaboration, and continuous improvement, I am confident in my ability to streamline your operations and drive efficiency across the
+                    board.
+                </p>
+                <a href="https://www.coursera.org/account/accomplishments/certificate/NL5YDSR222JD" class="read">See Here</a>
+            </div>
+        </div>
+
+        <div class="services-content">
+            <div class="box">
+                <div class="s-icons"><i class='bx bx-code-alt'></i></div>
+                <h3>Front-End Development
+
+                </h3>
+                <p>Fresh Front developer passionate about creating beautiful and functional websites. Completed web development training and eager to apply skills to real-world projects. Enjoys learning new technologies and staying updated with latest web
+                    development trends. Proficient in HTML, CSS, and JavaScript, with experience in React and Angular frameworks.Aims to create engaging user experiences in the mobile app ecosystem. Quick learner, always seeking opportunities to enhance
+                    skills and knowledge. Committed to delivering high-quality solutions.</p>
+                <a href="https://www.coursera.org/account/accomplishments/certificate/NKVLSEH9JC95" class="read">See Here</a>
+            </div>
+        </div>
+
+
+
+    </section>
+
+    <section class="portfolio" id="portfolio">
+
+        <div class="main-text">
+            <h2><span>My</span> Projects</h2>
+        </div>
+        <div class="portfolio-content">
+            <div class="row" style="height:100%">
+                <img src="ss.png" height="100%" width="70%">
+                <div class="layer">
+                    <h5>Portfolio Website</h5>
+                    <p>"Explore my diverse range of hands-on projects, showcasing my skills and dedication to excellence in Front-End Development."
+                    </p>
+                    <a href="https://abhisheksingh2125.github.io/Personal-Portfolio/"> <i class='bx bx-link-external'></i></a>
+                </div>
+            </div>
+            <div class="row">
+                <img src="mintos.png" height="298px" width="100%">
+                <div class="layer">
+                    <h5>Food Website </h5>
+                    <p>I have Developed Few Projects while learning the this technology.</p>
+                    <a href="https://abhisheksingh2125.github.io/Food-Website/"> <i class='bx bx-link-external'></i></i>
+                    </a>
+                </div>
+            </div>
+
+
+            <div class="row" style="height: 100%;">
+                <img src="sys.jpg" height="100%" width="100%">
+                <div class="layer">
+                    <h5>Cloud Based Smart Parking System using IoT</h5>
+                    <p>This project streamlines parking management, offering real-time availability, resource optimization, and a seamless user experience.</p>
+                    <a href="https://github.com/abhisheksingh2125/Smart-Parking-System.git"> <i class='bx bx-link-external'></i> </a>
+                </div>
+            </div>
+
+            <div class="row">
+                <img src="ec.jpg" height="298px" width="100%">
+                <div class="layer">
+                    <h5>E-Commerce with MongoDB</h5>
+                    <p>This platform leverages MongoDB's strengths for seamless scalability, lightning-fast performance, and adaptability, ensuring a top-notch shopping experience.</p>
+                    <a href="https://github.com/abhisheksinghgla/E-Commerce-with-MongoDB.git"> <i class='bx bx-link-external'></i> </a>
+                </div>
+            </div>
+
+            <div class="row">
+                <img src="we.png" height="298px" width="100%">
+                <div class="layer">
+                    <h5>Weather Application</h5>
+                    <p>Real-time updates, personalized forecasts, intuitive design. Your go-to for reliable weather information, anytime, anywhere.</p>
+                    <a href="https://github.com/abhisheksinghgla/Weather-app.git"> <i class='bx bx-link-external'></i> </a>
+                </div>
+            </div>
+
+            <div class="row">
+                <img src="cal.png" height="298px" width="100%">
+                <div class="layer">
+                    <h5>Calculator</h5>
+                    <p>Clean design, powerful functions, customizable. Your handy tool for quick and accurate calculations on the go.</p>
+                    <a href="https://github.com/abhisheksingh2125/Calculator.git"> <i class='bx bx-link-external'></i></i>
+                    </a>
+                </div>
+            </div>
+
+
+        </div>
+    </section>
+    <section class="contact" id="contact">
+
+        <div class="main-text">
+            <h2><span>Contact</span> Us</h2>
+            <div class="list">
+                <li><a href="#">+91 8535043628</a></li>
+                <li><a href="#">abhi211singh@gmail.com</a></li>
+
+            </div>
+            <div class="contact-icons">
+                <a href="https://www.facebook.com/profile.php?id=100034736657281"> <i class='bx bxl-facebook'></i> </a>
+                <a href="https://github.com/abhisheksingh2125?tab=repositories"> <i class='bx bxl-github'></i> </a>
+                <a href="https://www.instagram.com/____.abhi_rockerz_211.____/"> <i class='bx bxl-instagram'></i> </a>
+                <a href="https://www.linkedin.com/in/abhishek-pratap-singh-2b2752229/"> <i class='bx bxl-linkedin'></i> </a>
+
+            </div>
+
+        </div>
+        <div class="contact-form">
+            <form action=" ">
+                <input type="text" placeholder="Name" required />
+                <input type="email" placeholder="Email" required />
+                <input type="" placeholder="Your Mobile Number" required>
+                <textarea name="" id="" cols="35" rows="10" placeholder="How Can I Help You?" required></textarea>
+                <input type="submit" value="Send Message" class="submit" required>
+            </form>
+        </div>
+    </section>
+    <section class="end">
+        <div class="last-text">
+            <p class="centered">Copyright © 2024 by Abhishek Singh All Rights Reserved.</p>
+        </div>
+
+    </section>
+
+
+    <script>
+        const hamburgerMenu = document.querySelector('.hamburger-menu');
+        const navList = document.querySelector('.navlist');
+
+        hamburgerMenu.addEventListener('click', () => {
+            hamburgerMenu.classList.toggle('active');
+            navList.classList.toggle('active');
+        });
+
+        const navLinks = document.querySelectorAll('.navlist a');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                const targetId = e.target.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                const topOffset = 80;
+
+                window.scrollTo({
+                    top: targetElement.offsetTop - topOffset,
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, observerOptions);
+
+        const animatedElements = document.querySelectorAll('.animate-on-scroll');
+        animatedElements.forEach(element => {
+            observer.observe(element);
+        });
+
+        // Sticky header
+        const header = document.querySelector('header');
+
+        window.addEventListener('scroll', () => {
+            const scrollPosition = window.scrollY;
+            if (scrollPosition > 100) {
+                header.classList.add('sticky');
+            } else {
+                header.classList.remove('sticky');
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>
